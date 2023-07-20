@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { endpoint } from '../../core';
-import { examService } from '../../modules/exam/services/ExamService';
+import { examService } from '../../modules/';
 
 const createExamSchema = z.object({
   name: z.string().min(3).max(30),

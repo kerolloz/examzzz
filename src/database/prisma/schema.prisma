@@ -62,7 +62,7 @@ model StudentExamScore {
 
 enum QuestionType {
   MULTIPLE_CHOICE
-  INPIT_TEXT
+  INPUT_TEXT
 }
 
 enum QuestionScoring {
