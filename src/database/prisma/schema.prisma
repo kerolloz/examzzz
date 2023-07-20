@@ -38,10 +38,11 @@ model ExamQuestion {
 }
 
 model Student {
-  id               Int                @id @default(autoincrement())
-  name             String
-  age              Int
-  StudentExamScore StudentExamScore[]
+  id                        Int                         @id @default(autoincrement())
+  name                      String
+  age                       Int
+  StudentExamScore          StudentExamScore[]
+  StudentExamQuestionAnswer StudentExamQuestionAnswer[]
 }
 
 model StudentExamQuestionAnswer {
@@ -49,6 +50,8 @@ model StudentExamQuestionAnswer {
   examQuestionId Int
   examQuestion   ExamQuestion @relation(fields: [examQuestionId], references: [id])
   answerText     String
+  studentId      Int
+  student        Student      @relation(fields: [studentId], references: [id])
 }
 
 model StudentExamScore {
