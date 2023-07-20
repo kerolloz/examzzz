@@ -1,6 +1,5 @@
-import { StudentRepo, studentRepo } from '../repos/StudentRepo';
-
 import { Prisma } from '../../../database/client';
+import { StudentRepo, studentRepo } from '../repos/StudentRepo';
 
 export class StudentService {
   constructor(private readonly studentRepo: StudentRepo) {}
