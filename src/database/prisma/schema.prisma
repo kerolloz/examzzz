@@ -52,6 +52,8 @@ model StudentExamQuestionAnswer {
   answerText     String
   studentId      Int
   student        Student      @relation(fields: [studentId], references: [id])
+
+  @@unique([examQuestionId, studentId], name: "answerUniqueId")
 }
 
 model StudentExamScore {

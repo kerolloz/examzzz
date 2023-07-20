@@ -3,8 +3,8 @@ import { client, Prisma, PrismaClient } from '../../../database/client';
 export class StudentExamQuestionAnswerRepo {
   constructor(private readonly prisma: PrismaClient) {}
 
-  async createOne(data: Prisma.StudentExamQuestionAnswerCreateInput) {
-    return this.prisma.studentExamQuestionAnswer.create({ data });
+  async upsert(args: Prisma.StudentExamQuestionAnswerUpsertArgs) {
+    return this.prisma.studentExamQuestionAnswer.upsert(args);
   }
 
   async findMany(args: Prisma.StudentExamQuestionAnswerFindManyArgs) {

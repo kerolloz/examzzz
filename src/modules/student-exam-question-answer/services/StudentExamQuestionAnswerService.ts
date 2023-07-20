@@ -8,8 +8,12 @@ export class StudentExamQuestionAnswerService {
   constructor(
     private readonly studentExamQuestionAnswerRepo: StudentExamQuestionAnswerRepo,
   ) {}
-  async createOne(args: Prisma.StudentExamQuestionAnswerCreateInput) {
-    return this.studentExamQuestionAnswerRepo.createOne(args);
+  async upsert(args: Prisma.StudentExamQuestionAnswerUpsertArgs) {
+    return this.studentExamQuestionAnswerRepo.upsert(args);
+  }
+
+  async findMany(args: Prisma.StudentExamQuestionAnswerFindManyArgs) {
+    return this.studentExamQuestionAnswerRepo.findMany(args);
   }
 }
 
