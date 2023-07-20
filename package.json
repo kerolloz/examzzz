@@ -1,0 +1,52 @@
+{
+  "name": "backend",
+  "version": "0.0.1",
+  "private": "true",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node -r dotenv/config -r source-map-support/register .",
+    "dev": "ts-node-dev --respawn -r dotenv/config -r source-map-support/register src/index.ts",
+    "build": "tsc",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.0.0",
+    "@sendgrid/mail": "^7.7.0",
+    "@typegoose/typegoose": "^11.4.0",
+    "axios": "^1.4.0",
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-bearer-token": "^2.4.0",
+    "form-data": "^4.0.0",
+    "formidable": "^3.5.0",
+    "helmet": "^7.0.0",
+    "jsonwebtoken": "^9.0.1",
+    "morgan": "^1.10.0",
+    "source-map-support": "^0.5.21",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/compression": "^1.7.2",
+    "@types/cors": "^2.8.13",
+    "@types/formidable": "^3.4.0",
+    "@types/helmet": "0.0.48",
+    "@types/jsonwebtoken": "^9.0.2",
+    "@types/morgan": "^1.9.4",
+    "@types/node": "^20.4.2",
+    "@typescript-eslint/eslint-plugin": "^6.1.0",
+    "@typescript-eslint/parser": "^6.1.0",
+    "eslint": "^8.45.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "3.0.0",
+    "prisma": "^5.0.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.1.6"
+  }
+}
