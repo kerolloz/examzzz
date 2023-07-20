@@ -19,3 +19,14 @@ export const createOne = endpoint({ body: createExamSchema }, async (req) => {
     },
   };
 });
+
+export const findMany = endpoint(async () => {
+  const exams = await examService.findMany();
+
+  return {
+    content: {
+      message: 'Exams fetched successfully!',
+      data: { exams },
+    },
+  };
+});

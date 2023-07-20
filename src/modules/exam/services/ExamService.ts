@@ -7,6 +7,10 @@ export class ExamService {
   async createOne(data: Prisma.ExamCreateInput) {
     return this.examRepo.createOne(data);
   }
+
+  async findMany() {
+    return this.examRepo.findMany();
+  }
 }
 
 export const examService = new ExamService(examRepo);
