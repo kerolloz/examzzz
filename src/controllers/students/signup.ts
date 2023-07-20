@@ -1,5 +1,6 @@
 import z from 'zod';
 import { endpoint } from '../../core';
+import { JsonWebToken } from '../../lib';
 import { studentService } from '../../modules';
 
 const signupBodySchema = z.object({
@@ -8,10 +9,15 @@ const signupBodySchema = z.object({
 });
 
 export default endpoint({ body: signupBodySchema }, async (req) => {
+  const user = await studentService.createOne(
+    req.body as z.infer<typeof signupBodySchema>,
+  );
+  const token = JsonWebToken.encode({ id: user.id });
+
   return {
-    content: await studentService.createOne(
-      req.body as z.infer<typeof signupBodySchema>,
-    ),
-    status: 201,
+    content: {
+      message: 'Registered successfully!',
+      data: { user, token },
+    },
   };
 });
