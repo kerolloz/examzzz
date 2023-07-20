@@ -11,10 +11,11 @@ datasource db {
 }
 
 model Exam {
-  id           Int            @id @default(autoincrement())
-  name         String
-  duration     Int
-  ExamQuestion ExamQuestion[]
+  id               Int                @id @default(autoincrement())
+  name             String
+  duration         Int
+  ExamQuestion     ExamQuestion[]
+  StudentExamScore StudentExamScore[]
 }
 
 model Question {
@@ -37,9 +38,10 @@ model ExamQuestion {
 }
 
 model Student {
-  id   Int    @id @default(autoincrement())
-  name String
-  age  Int
+  id               Int                @id @default(autoincrement())
+  name             String
+  age              Int
+  StudentExamScore StudentExamScore[]
 }
 
 model StudentExamQuestionAnswer {
@@ -47,6 +49,15 @@ model StudentExamQuestionAnswer {
   examQuestionId Int
   examQuestion   ExamQuestion @relation(fields: [examQuestionId], references: [id])
   answerText     String
+}
+
+model StudentExamScore {
+  id        Int     @id @default(autoincrement())
+  examId    Int
+  exam      Exam    @relation(fields: [examId], references: [id])
+  studentId Int
+  student   Student @relation(fields: [studentId], references: [id])
+  score     Int
 }
 
 enum QuestionType {
