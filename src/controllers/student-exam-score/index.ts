@@ -10,7 +10,6 @@ const studentExamScoreQuerySchema = z.object({
 export const findMany = endpoint(
   { query: studentExamScoreQuerySchema },
   async (req) => {
-    console.log(req.query);
     return {
       content: {
         message: 'Student exam scores fetched successfully!',

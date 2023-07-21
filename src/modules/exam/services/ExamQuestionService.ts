@@ -14,6 +14,14 @@ export class ExamQuestionService {
   ) {
     return this.examQuestionRepo.findMany(query, options);
   }
+
+  async groupByExam(query: Prisma.ExamQuestionWhereInput) {
+    const examQuestions = await this.examQuestionRepo.groupByExam(query);
+    return examQuestions.map((examQ) => ({
+      examId: examQ.examId,
+      totalQuestions: examQ._count.id,
+    }));
+  }
 }
 
 export const examQuestionService = new ExamQuestionService(examQuestionRepo);

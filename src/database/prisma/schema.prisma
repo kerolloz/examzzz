@@ -63,12 +63,15 @@ model StudentExamQuestionAnswer {
 }
 
 model StudentExamScore {
-  id        Int     @id @default(autoincrement())
-  examId    Int
-  exam      Exam    @relation(fields: [examId], references: [id])
-  studentId Int
-  student   Student @relation(fields: [studentId], references: [id])
-  score     Int
+  id         Int     @id @default(autoincrement())
+  examId     Int
+  exam       Exam    @relation(fields: [examId], references: [id])
+  studentId  Int
+  student    Student @relation(fields: [studentId], references: [id])
+  score      Int
+  totalScore Int
+
+  @@unique([examId, studentId], name: "scoreUniqueId")
 }
 
 enum QuestionType {

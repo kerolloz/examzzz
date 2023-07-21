@@ -7,8 +7,14 @@ export class StudentExamQuestionAnswerRepo {
     return this.prisma.studentExamQuestionAnswer.upsert(args);
   }
 
-  async findMany(args: Prisma.StudentExamQuestionAnswerFindManyArgs) {
-    return this.prisma.studentExamQuestionAnswer.findMany(args);
+  async findMany<T extends Prisma.StudentExamQuestionAnswerInclude>(
+    query: Prisma.StudentExamQuestionAnswerFindManyArgs['where'],
+    options: { include: T },
+  ) {
+    return this.prisma.studentExamQuestionAnswer.findMany({
+      where: query,
+      include: options.include,
+    });
   }
 }
 

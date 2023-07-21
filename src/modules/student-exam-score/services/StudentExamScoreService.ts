@@ -7,8 +7,8 @@ import {
 export class StudentExamScoreService {
   constructor(private readonly studentExamScoreRepo: StudentExamScoreRepo) {}
 
-  async createOne(data: Prisma.StudentExamScoreUncheckedCreateInput) {
-    return this.studentExamScoreRepo.createOne(data);
+  async upsert(args: Prisma.StudentExamScoreUpsertArgs) {
+    return this.studentExamScoreRepo.upsert(args);
   }
 
   async findMany(query: Prisma.StudentExamScoreWhereInput) {

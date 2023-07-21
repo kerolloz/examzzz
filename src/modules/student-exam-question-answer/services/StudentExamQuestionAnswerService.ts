@@ -12,8 +12,11 @@ export class StudentExamQuestionAnswerService {
     return this.studentExamQuestionAnswerRepo.upsert(args);
   }
 
-  async findMany(args: Prisma.StudentExamQuestionAnswerFindManyArgs) {
-    return this.studentExamQuestionAnswerRepo.findMany(args);
+  async findMany<T extends Prisma.StudentExamQuestionAnswerInclude>(
+    query: Prisma.StudentExamQuestionAnswerFindManyArgs['where'],
+    options: { include: T },
+  ) {
+    return this.studentExamQuestionAnswerRepo.findMany(query, options);
   }
 }
 

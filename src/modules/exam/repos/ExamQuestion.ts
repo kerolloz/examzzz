@@ -16,6 +16,14 @@ export class ExamQuestionRepo {
       include: options,
     });
   }
+
+  async groupByExam(query: Prisma.ExamQuestionWhereInput) {
+    return this.prisma.examQuestion.groupBy({
+      by: ['examId'],
+      where: query,
+      _count: { id: true },
+    });
+  }
 }
 
 export const examQuestionRepo = new ExamQuestionRepo(client);
