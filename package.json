@@ -4,7 +4,7 @@
   "private": "true",
   "main": "dist/index.js",
   "scripts": {
-    "start": "prestart && node -r dotenv/config -r source-map-support/register .",
+    "start": "npm run prestart && node -r dotenv/config -r source-map-support/register .",
     "postinstall": "prisma generate --schema=./src/database/prisma/schema.prisma",
     "prestart": "prisma migrate deploy --schema=./src/database/prisma/schema.prisma",
     "dev": "ts-node-dev --respawn -r dotenv/config -r source-map-support/register src/index.ts",
