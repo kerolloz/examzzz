@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { endpoint } from '../../core';
-import { studentExamQuestionAnswerService } from '../../modules/student-exam-question-answer';
+import { studentExamQuestionAnswerService } from '../../modules';
 import { IAuthRequest } from '../../types/auth';
 
 const answerStudentExamQuestionBodySchema = z.object({
