@@ -1,6 +1,8 @@
 import { z } from 'zod';
 import { endpoint } from '../../core';
+import { UserRole } from '../../middleware/roles';
 import { examQuestionService, examService } from '../../modules/';
+import { IAuthRequest } from '../../types/auth';
 
 const createExamSchema = z.object({
   name: z.string().min(3).max(30),
@@ -68,10 +70,22 @@ export const findExamQuestions = endpoint(
       examId,
     });
 
+    const { userRole } = req as IAuthRequest;
+    const response =
+      userRole === UserRole.STUDENT
+        ? questions.map((question) => ({
+            ...question,
+            question: {
+              ...question.question,
+              correctAnswer: undefined,
+            },
+          }))
+        : questions;
+
     return {
       content: {
         message: 'Questions fetched successfully!',
-        data: { questions },
+        data: { questions: response },
       },
     };
   },
