@@ -5,7 +5,7 @@ import {
   studentExamScoreService,
 } from '../modules';
 async function gradeAnswers() {
-  console.log('[GRADING] start');
+  console.time('[GRADING]');
   // we need to fetch all the exam answers
   // for each answer we need to check if it's correct and then accumulate the score
   // finally save the scores
@@ -48,7 +48,7 @@ async function gradeAnswers() {
     answers,
   );
 
-  Object.entries(groupedAnswers).map(async ([_, value]) => {
+  Object.values(groupedAnswers).map((value) => {
     // examId, studentId, score, totalScore
     if (value?.length) {
       const examId = value[0].examId;
@@ -59,18 +59,20 @@ async function gradeAnswers() {
         score: value.reduce((acc, curr) => acc + (curr.isCorrect ? 1 : 0), 0),
         totalScore: examTotalScore[value[0].examId],
       };
-      await studentExamScoreService.upsert({
-        where: { scoreUniqueId: { examId, studentId } },
-        create: data,
-        update: {
-          score: data.score,
-          totalScore: data.totalScore,
-        },
-      });
+      studentExamScoreService
+        .upsert({
+          where: { scoreUniqueId: { examId, studentId } },
+          create: data,
+          update: {
+            score: data.score,
+            totalScore: data.totalScore,
+          },
+        })
+        .catch(console.error);
     }
   });
+  console.timeEnd('[GRADING]');
 }
 
 // every minute
-// export default () => setInterval(() => void gradeAnswers(), 5000);
-export default () => gradeAnswers();
+export default () => setInterval(() => void gradeAnswers(), 1000 * 60);
