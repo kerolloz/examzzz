@@ -1,0 +1,27 @@
+import { NextFunction, Request, Response, type RequestHandler } from 'express';
+import { HttpException, UNAUTHORIZED } from '../core';
+import { JsonWebToken } from '../lib/JsonWebToken';
+import { studentService } from '../modules';
+import { IAuthRequest, IAuthToken } from '../types/auth';
+
+const authenticate = (async (req: Request, _: Response, next: NextFunction) => {
+  const token = req.token;
+
+  if (!token) {
+    return next(
+      new HttpException(UNAUTHORIZED, { message: 'a token is needed' }),
+    );
+  }
+  const decoded_token = JsonWebToken.decode(token) as IAuthToken;
+  if (decoded_token) {
+    const user = await studentService.findOne({ id: decoded_token.id });
+    if (user && JsonWebToken.verify(token)) {
+      (req as IAuthRequest).currentUser = user;
+      return next();
+    }
+  }
+
+  return next(new HttpException(UNAUTHORIZED, { message: 'invalid token' }));
+}) as RequestHandler;
+
+export { authenticate };

@@ -6,7 +6,7 @@ import bearerToken from 'express-bearer-token';
 import helmet from 'helmet';
 import http from 'http';
 import morgan from 'morgan';
-import { exceptionHandler } from './middlewares';
+import { exceptionHandler } from './middleware';
 import routes from './routes';
 
 const { NODE_ENV = 'development', PORT } = process.env;

@@ -1,7 +1,10 @@
+import { Request } from 'express';
+import { Student } from '../../database/client';
+
 export interface IAuthToken {
-  id: string;
+  id: number;
 }
 
-// export interface IAuthRequest<T extends User = User> extends Request {
-//   currentUser: DocumentType<T>;
-// }
+export interface IAuthRequest extends Request {
+  currentUser: Student;
+}

@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { endpoint } from '../../core';
 import { studentExamQuestionAnswerService } from '../../modules/student-exam-question-answer';
+import { IAuthRequest } from '../../types/auth';
 
 const answerStudentExamQuestionBodySchema = z.object({
   answerText: z.string().min(1).max(1000),
@@ -23,8 +24,7 @@ export const answer = endpoint(
       typeof answerStudentExamQuestionBodySchema
     >;
 
-    // TODO: change this to use the logged in student id
-    const studentId = 2;
+    const studentId = (req as IAuthRequest).currentUser.id;
     const data = {
       answerText,
       examQuestionId,

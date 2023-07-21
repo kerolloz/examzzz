@@ -7,6 +7,10 @@ export class StudentService {
   async createOne(data: Prisma.StudentCreateInput) {
     return this.studentRepo.createOne(data);
   }
+
+  async findOne(query: Prisma.StudentWhereInput) {
+    return this.studentRepo.findOne(query);
+  }
 }
 
 export const studentService = new StudentService(studentRepo);

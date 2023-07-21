@@ -14,7 +14,7 @@ export class JsonWebToken {
     }
   }
 
-  static verify(token: string, keySign: string): boolean {
+  static verify(token: string, keySign = ''): boolean {
     try {
       jwt.verify(token, JWT_SECRET_KEY + keySign);
       return true;
