@@ -19,7 +19,7 @@ RUN npm ci
 # Copy source code (and all other relevant files)
 COPY --chown=node:node . .
 
-RUN npx prisma generate
+RUN npm run db:generate
 
 # Build code (TypeScript)
 RUN npm run build

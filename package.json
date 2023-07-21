@@ -10,6 +10,7 @@
     "build": "tsc",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
+    "db:generate": "prisma generate --schema=./src/database/prisma/schema.prisma",
     "db:migrate": "prisma migrate dev --schema=./src/database/prisma/schema.prisma"
   },
   "dependencies": {
