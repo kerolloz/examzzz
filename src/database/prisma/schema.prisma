@@ -30,6 +30,7 @@ model Question {
   answers       String[]
   type          QuestionType
   scoring       QuestionScoring
+  imageUrl      String?
   correctAnswer String
   ExamQuestion  ExamQuestion[]
 }
