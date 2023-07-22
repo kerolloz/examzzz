@@ -5,7 +5,7 @@ import { examQuestionService, examService } from '../../modules/';
 import { IAuthRequest } from '../../types/auth';
 
 const createExamSchema = z.object({
-  name: z.string().min(3).max(30),
+  name: z.string().trim().min(3).max(30),
   duration: z.coerce.number().min(1).max(1000),
 });
 

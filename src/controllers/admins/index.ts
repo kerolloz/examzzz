@@ -5,8 +5,8 @@ import { UserRole } from '../../middleware/roles';
 import { adminService } from '../../modules';
 
 const adminLoginBodySchema = z.object({
-  username: z.string().min(1).max(100),
-  password: z.string().min(1).max(100),
+  username: z.string().trim().min(1).max(100),
+  password: z.string().trim().min(1).max(100),
 });
 
 export const login = endpoint(

@@ -6,7 +6,7 @@ import { questionService } from '../../modules';
 const createQuestionSchema = z.object({
   text: z.string().min(3).max(1000),
   answers: z.array(z.string().min(1).max(1000)),
-  imageUrl: z.string().url().min(1).max(1000).optional(),
+  imageUrl: z.string().trim().url().min(1).max(1000).optional(),
   type: z.nativeEnum(QuestionType),
   correctAnswer: z.string().min(1).max(1000),
   scoring: z.nativeEnum(QuestionScoring),

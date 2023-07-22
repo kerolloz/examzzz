@@ -5,7 +5,7 @@ import { UserRole } from '../../middleware/roles';
 import { studentService } from '../../modules';
 
 const signupBodySchema = z.object({
-  name: z.string().min(3).max(30),
+  name: z.string().trim().min(3).max(30),
   age: z.coerce.number().min(1).max(100),
 });
 
