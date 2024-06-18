@@ -4,7 +4,7 @@
 # In the second stage, we start fresh and only copy necessary files. We also purge node_modules devDependencies.
 
 #### --- Build stage --- ####
-FROM node:18-alpine AS build
+FROM node:20-alpine AS build
 
 # Update npm to latest version
 RUN npm i -g npm
@@ -27,7 +27,7 @@ RUN npm run build
 #### --- Run-time stage --- ####
 
 # ✅ See bullet point #8.10 about smaller docker base images
-FROM node:16-alpine as app
+FROM node:20-alpine as app
 
 # Update npm to latest version
 RUN npm i -g npm
