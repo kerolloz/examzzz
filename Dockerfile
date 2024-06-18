@@ -44,7 +44,6 @@ ENV NODE_ENV production
 COPY --chown=node:node --from=build package.json package-lock.json ./
 COPY --chown=node:node --from=build node_modules ./node_modules
 COPY --chown=node:node --from=build dist ./dist
-COPY --chown=node:node .env ./.env 
 
 # Clean dev dependencies ✅ See bullet point #8.5
 RUN npm prune --production && npm cache clean --force
