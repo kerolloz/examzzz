@@ -4,7 +4,6 @@ import cors from 'cors';
 import express from 'express';
 import bearerToken from 'express-bearer-token';
 import helmet from 'helmet';
-import http from 'http';
 import morgan from 'morgan';
 import { exceptionHandler } from './middleware';
 import routes from './routes';
@@ -29,8 +28,8 @@ app.use(bearerToken());
 app.use(routes);
 app.use(exceptionHandler);
 
-export function run(): Promise<http.Server> {
-  return new Promise<http.Server>((resolve, reject) => {
+export function run() {
+  return new Promise((resolve, reject) => {
     const port = (PORT || 5000).toString();
     const server = app.listen(port);
 
